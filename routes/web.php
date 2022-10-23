@@ -23,11 +23,12 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth', 'verified'])
     ->prefix('student')
+    ->name('student.')
     ->group(function () {
         Route::get('timetable', [App\Http\Controllers\Student\TimetableController::class, 'index'])
-            ->name('student.timetable');
+            ->name('timetable');
         Route::get('fake', [App\Http\Controllers\Student\TimetableController::class, 'fake'])
-            ->name('student.fake');
+            ->name('fake');
     });
 
 
