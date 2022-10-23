@@ -28,8 +28,6 @@ Route::middleware(['auth', 'verified'])
             ->group(function () {
                 Route::get('timetable', [App\Http\Controllers\Student\TimetableController::class, 'index'])
                     ->name('timetable');
-                Route::get('fake', [App\Http\Controllers\Student\TimetableController::class, 'fake'])
-                    ->name('fake');
             });
     });
 
