@@ -13,13 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-require __DIR__.'/auth.php';
-require __DIR__.'/student.php';
+Route::middleware(['auth', 'verified'])
+    ->prefix('student')
+    ->name('student.')
+    ->group(function () {
+        Route::get('timetable', [App\Http\Controllers\Student\TimetableController::class, 'index'])
+            ->name('timetable');
+        Route::get('fake', [App\Http\Controllers\Student\TimetableController::class, 'fake'])
+            ->name('fake');
+    });
