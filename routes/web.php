@@ -34,6 +34,14 @@ Route::middleware(['auth', 'verified'])
                 Route::get('timetable', [App\Http\Controllers\Teacher\TimetableController::class, 'index'])
                     ->name('timetable');
             });
+
+        Route::middleware('role:3')
+            ->prefix('admin')
+            ->name('admin.')
+            ->group(function () {
+                Route::get('timetable', [App\Http\Controllers\Admin\UsersController::class, 'index'])
+                    ->name('timetable');
+            });
     });
 
 require __DIR__.'/auth.php';
